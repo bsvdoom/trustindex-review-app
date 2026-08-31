@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ review.companyName }} vélemény | Trustindex{% endblock %}
+
+{% block body %}
+    <article class="review-detail">
+        <div class="review-card-header">
+            <div>
+                <p class="eyebrow">Vélemény részletei</p>
+                <h1>{{ review.companyName }}</h1>
+            </div>
+            <time datetime="{{ review.createdAt|date('c') }}">
+                {{ review.createdAt|date('Y. m. d. H:i') }}
+            </time>
+        </div>
+
+        <div class="rating" role="img" aria-label="Értékelés: {{ review.rating }} az 5-ből">
+            <span aria-hidden="true">
+                {% for star in 1..5 %}{{ star <= review.rating ? '★' : '☆' }}{% endfor %}
+            </span>
+        </div>
+
+        <p class="review-detail-text">{{ review.reviewText }}</p>
+    </article>
+
+    <a class="back-link" href="{{ path('app_review_index') }}">← Vissza a főoldalra</a>
+{% endblock %}

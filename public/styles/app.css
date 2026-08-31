@@ -37,6 +37,12 @@ a {
     gap: 1rem;
 }
 
+.navigation-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 .brand {
     color: #172033;
     font-size: 1.1rem;
@@ -110,6 +116,41 @@ h2 {
     gap: 1rem;
 }
 
+.search-form {
+    display: flex;
+    align-items: end;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #dce1e9;
+    border-radius: 0.75rem;
+    background: #ffffff;
+}
+
+.search-field {
+    flex: 1 1 18rem;
+}
+
+.search-field label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+}
+
+.search-field input {
+    width: 100%;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #aeb7c5;
+    border-radius: 0.4rem;
+    color: inherit;
+    font: inherit;
+}
+
+.clear-search,
+.review-link {
+    font-weight: 650;
+}
+
 .review-card,
 .form-card,
 .empty-state {
@@ -144,6 +185,65 @@ h2 {
     margin-bottom: 0;
     overflow-wrap: anywhere;
     white-space: pre-line;
+}
+
+.review-link {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.review-detail {
+    margin-bottom: 1.25rem;
+    padding: 1.75rem;
+    border: 1px solid #dce1e9;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 0.25rem 1rem rgb(23 32 51 / 6%);
+}
+
+.review-detail time {
+    flex: 0 0 auto;
+    color: #687386;
+    font-size: 0.9rem;
+}
+
+.review-detail-text {
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.statistics-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #dce1e9;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 0.25rem 1rem rgb(23 32 51 / 6%);
+}
+
+.statistics-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.statistics-table th,
+.statistics-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid #e5e8ee;
+    text-align: left;
+}
+
+.statistics-table thead th {
+    background: #eef2f7;
+    color: #3e4a5d;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.statistics-table tbody tr:last-child th,
+.statistics-table tbody tr:last-child td {
+    border-bottom: 0;
 }
 
 .empty-state {
@@ -211,8 +311,19 @@ h2 {
 }
 
 @media (max-width: 40rem) {
+    .navigation {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-block: 0.8rem;
+    }
+
+    .navigation-links {
+        flex-wrap: wrap;
+    }
+
     .page-heading,
-    .review-card-header {
+    .review-card-header,
+    .search-form {
         align-items: flex-start;
         flex-direction: column;
     }
@@ -220,5 +331,10 @@ h2 {
     .page-heading .button {
         width: 100%;
         text-align: center;
+    }
+
+    .search-field,
+    .search-form .button {
+        width: 100%;
     }
 }

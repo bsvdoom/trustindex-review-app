@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cégstatisztika | Trustindex{% endblock %}
+
+{% block body %}
+    <section class="page-heading">
+        <div>
+            <p class="eyebrow">Összesített értékelések</p>
+            <h1>Cégstatisztika</h1>
+        </div>
+    </section>
+
+    {% if statistics is empty %}
+        <div class="empty-state">
+            <p>Még nincs megjeleníthető cégstatisztika.</p>
+        </div>
+    {% else %}
+        <div class="statistics-table-wrapper">
+            <table class="statistics-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Cégnév</th>
+                        <th scope="col">Vélemények száma</th>
+                        <th scope="col">Átlagos értékelés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for statistic in statistics %}
+                        <tr>
+                            <th scope="row">{{ statistic.companyName }}</th>
+                            <td>{{ statistic.reviewCount }}</td>
+                            <td>{{ statistic.averageRating|number_format(2, ',', ' ') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

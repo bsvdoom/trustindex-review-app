@@ -8,6 +8,7 @@ use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,15 @@ use Symfony\Component\Routing\Attribute\Route;
 class ReviewController extends AbstractController
 {
     #[Route('/', name: 'app_review_index', methods: ['GET'])]
-    public function index(ReviewRepository $reviewRepository): Response
+    public function index(Request $request, ReviewRepository $reviewRepository): Response
     {
+        $query = trim((string) $request->query->get('q', ''));
+        $query = mb_substr($query, 0, 255);
+        $query = '' === $query ? null : $query;
+
         return $this->render('review/index.html.twig', [
-            'reviews' => $reviewRepository->findAllOrderedByNewest(),
+            'reviews' => $reviewRepository->findAllOrderedByNewest($query),
+            'query' => $query,
         ]);
     }
 
@@ -41,6 +47,14 @@ class ReviewController extends AbstractController
 
         return $this->render('review/new.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/reviews/{id}', name: 'app_review_show', requirements: ['id' => '[1-9][0-9]*'], methods: ['GET'])]
+    public function show(#[MapEntity(id: 'id')] Review $review): Response
+    {
+        return $this->render('review/show.html.twig', [
+            'review' => $review,
         ]);
     }
 }

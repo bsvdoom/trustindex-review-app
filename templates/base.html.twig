@@ -10,7 +10,11 @@
         <header class="site-header">
             <nav class="container navigation" aria-label="Fő navigáció">
                 <a class="brand" href="{{ path('app_review_index') }}">Trustindex vélemények</a>
-                <a class="navigation-link" href="{{ path('app_review_new') }}">Új vélemény</a>
+                <div class="navigation-links">
+                    <a class="navigation-link" href="{{ path('app_review_index') }}">Vélemények</a>
+                    <a class="navigation-link" href="{{ path('app_review_new') }}">Új vélemény</a>
+                    <a class="navigation-link" href="{{ path('app_company_index') }}">Cégstatisztika</a>
+                </div>
             </nav>
         </header>
 
