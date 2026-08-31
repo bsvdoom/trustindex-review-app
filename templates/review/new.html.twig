@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Új vélemény | Trustindex{% endblock %}
+
+{% block body %}
+    <section class="form-page">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">Oszd meg a tapasztalatod</p>
+                <h1>Új vélemény</h1>
+            </div>
+        </div>
+
+        <div class="form-card">
+            {{ form_start(form) }}
+                {{ form_row(form.companyName) }}
+                {{ form_row(form.rating) }}
+                {{ form_row(form.reviewText) }}
+                {{ form_row(form.authorEmail) }}
+                {{ form_row(form.submit, { attr: { class: 'button' } }) }}
+            {{ form_end(form) }}
+        </div>
+
+        <a class="back-link" href="{{ path('app_review_index') }}">← Vissza a főoldalra</a>
+    </section>
+{% endblock %}

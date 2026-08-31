@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Trustindex vélemények{% endblock %}</title>
+        <link rel="stylesheet" href="/styles/app.css">
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="container navigation" aria-label="Fő navigáció">
+                <a class="brand" href="{{ path('app_review_index') }}">Trustindex vélemények</a>
+                <a class="navigation-link" href="{{ path('app_review_new') }}">Új vélemény</a>
+            </nav>
+        </header>
+
+        <main class="container main-content">
+            {% for message in app.flashes('success') %}
+                <div class="flash flash-success" role="status">{{ message|e }}</div>
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+        </main>
+    </body>
+</html>

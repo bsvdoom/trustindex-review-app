@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vélemények | Trustindex{% endblock %}
+
+{% block body %}
+    <section class="page-heading">
+        <div>
+            <p class="eyebrow">Cégértékelések</p>
+            <h1>Legfrissebb vélemények</h1>
+        </div>
+        <a class="button" href="{{ path('app_review_new') }}">Véleményt írok</a>
+    </section>
+
+    <div class="review-list">
+        {% for review in reviews %}
+            {% set reviewText = review.reviewText %}
+            <article class="review-card">
+                <div class="review-card-header">
+                    <h2>{{ review.companyName }}</h2>
+                    <time datetime="{{ review.createdAt|date('c') }}">
+                        {{ review.createdAt|date('Y. m. d. H:i') }}
+                    </time>
+                </div>
+
+                <div class="rating" role="img" aria-label="Értékelés: {{ review.rating }} az 5-ből">
+                    <span aria-hidden="true">
+                        {% for star in 1..5 %}{{ star <= review.rating ? '★' : '☆' }}{% endfor %}
+                    </span>
+                </div>
+
+                <p class="review-text">
+                    {{ reviewText|length > 160 ? reviewText|slice(0, 160) ~ '…' : reviewText }}
+                </p>
+            </article>
+        {% else %}
+            <div class="empty-state">
+                <p>Még nem érkezett vélemény. Légy te az első!</p>
+                <a class="button" href="{{ path('app_review_new') }}">Első vélemény megírása</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -17,4 +17,16 @@ class ReviewRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Review::class);
     }
+
+    /**
+     * @return list<Review>
+     */
+    public function findAllOrderedByNewest(): array
+    {
+        return $this->createQueryBuilder('review')
+            ->orderBy('review.createdAt', 'DESC')
+            ->addOrderBy('review.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }
