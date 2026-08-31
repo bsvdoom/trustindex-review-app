@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ReviewRepository extends ServiceEntityRepository
 {
+    private const COMPANY_SUGGESTION_LIMIT = 100;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Review::class);
@@ -98,6 +100,25 @@ class ReviewRepository extends ServiceEntityRepository
         }
 
         return $this->normalizeCompanyStatistic($statistics[0]);
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function findCompanyNameSuggestions(): array
+    {
+        /** @var list<array{companyName: mixed}> $companyNames */
+        $companyNames = $this->createQueryBuilder('review')
+            ->select('DISTINCT review.companyName AS companyName')
+            ->orderBy('review.companyName', 'ASC')
+            ->setMaxResults(self::COMPANY_SUGGESTION_LIMIT)
+            ->getQuery()
+            ->getArrayResult();
+
+        return array_map(
+            static fn (array $company): string => (string) $company['companyName'],
+            $companyNames,
+        );
     }
 
     private function createNewestFirstQueryBuilder(): QueryBuilder

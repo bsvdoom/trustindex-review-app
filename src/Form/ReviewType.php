@@ -22,7 +22,9 @@ class ReviewType extends AbstractType
             ->add('companyName', TextType::class, [
                 'label' => 'Cég neve',
                 'attr' => [
+                    'aria-describedby' => 'company-name-help',
                     'autocomplete' => 'organization',
+                    'list' => 'company-name-suggestions',
                     'maxlength' => 255,
                 ],
             ])

@@ -30,7 +30,11 @@ class ReviewController extends AbstractController
     }
 
     #[Route('/reviews/new', name: 'app_review_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        ReviewRepository $reviewRepository,
+    ): Response
     {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
@@ -47,6 +51,7 @@ class ReviewController extends AbstractController
 
         return $this->render('review/new.html.twig', [
             'form' => $form,
+            'companyNames' => $reviewRepository->findCompanyNameSuggestions(),
         ]);
     }
 

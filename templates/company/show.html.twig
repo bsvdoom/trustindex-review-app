@@ -24,7 +24,7 @@
         <h2 id="company-reviews-heading" class="section-heading">A cég véleményei</h2>
         <div class="review-list company-review-list">
             {% for review in reviews %}
-                {% include 'review/_card.html.twig' with { review: review, showCompanyLink: false } only %}
+                {% include 'review/_card.html.twig' with { review: review, showCompany: false } only %}
             {% endfor %}
         </div>
     </section>

@@ -14,6 +14,12 @@
         <div class="form-card">
             {{ form_start(form) }}
                 {{ form_row(form.companyName) }}
+                <p id="company-name-help" class="form-help">Válassz egy meglévő céget a javaslatok közül, vagy adj meg egy újat.</p>
+                <datalist id="company-name-suggestions">
+                    {% for companyName in companyNames %}
+                        <option value="{{ companyName }}"></option>
+                    {% endfor %}
+                </datalist>
                 {{ form_row(form.rating) }}
                 {{ form_row(form.reviewText) }}
                 {{ form_row(form.authorEmail) }}

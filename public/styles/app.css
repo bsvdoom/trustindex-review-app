@@ -373,6 +373,12 @@ h2 {
     color: #a12525;
 }
 
+.form-help {
+    margin: -0.75rem 0 1.15rem;
+    color: #596579;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 40rem) {
     .navigation {
         align-items: flex-start;

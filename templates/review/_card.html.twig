@@ -1,17 +1,15 @@
-{% set showCompanyLink = showCompanyLink ?? true %}
+{% set showCompany = showCompany ?? true %}
 {% set reviewText = review.reviewText %}
 
 <article class="review-card">
     <div class="review-card-header">
-        <h2>
-            {% if showCompanyLink %}
+        {% if showCompany %}
+            <h2>
                 <a class="company-link" href="{{ path('app_company_show', { name: review.companyName }) }}">
                     {{ review.companyName }}
                 </a>
-            {% else %}
-                {{ review.companyName }}
-            {% endif %}
-        </h2>
+            </h2>
+        {% endif %}
         <time datetime="{{ review.createdAt|date('c') }}">
             {{ review.createdAt|date('Y. m. d. H:i') }}
         </time>
