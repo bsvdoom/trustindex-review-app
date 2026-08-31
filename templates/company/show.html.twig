@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ statistics.companyName }} | Trustindex{% endblock %}
+
+{% block body %}
+    <section class="company-heading">
+        <div>
+            <p class="eyebrow">Cég adatlapja</p>
+            <h1>{{ statistics.companyName }}</h1>
+        </div>
+        <div class="company-summary" aria-label="Cég összesített értékelése">
+            <div>
+                <span class="summary-value">{{ statistics.reviewCount }}</span>
+                <span class="summary-label">vélemény</span>
+            </div>
+            <div>
+                <span class="summary-value">{{ statistics.averageRating|number_format(2, ',', ' ') }}</span>
+                <span class="summary-label">átlagos értékelés</span>
+            </div>
+        </div>
+    </section>
+
+    <section aria-labelledby="company-reviews-heading">
+        <h2 id="company-reviews-heading" class="section-heading">A cég véleményei</h2>
+        <div class="review-list company-review-list">
+            {% for review in reviews %}
+                {% include 'review/_card.html.twig' with { review: review, showCompanyLink: false } only %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <div class="company-back-links">
+        <a class="back-link" href="{{ path('app_company_index') }}">← Vissza a cégstatisztikához</a>
+        <a class="back-link" href="{{ path('app_review_index') }}">Összes vélemény</a>
+    </div>
+{% endblock %}

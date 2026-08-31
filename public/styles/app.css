@@ -147,8 +147,20 @@ h2 {
 }
 
 .clear-search,
-.review-link {
+.review-link,
+.company-link {
     font-weight: 650;
+}
+
+.company-link {
+    color: inherit;
+    text-decoration-color: #8fa5d7;
+    text-underline-offset: 0.16em;
+}
+
+.company-link:hover,
+.company-link:focus-visible {
+    color: #2457c5;
 }
 
 .review-card,
@@ -211,6 +223,57 @@ h2 {
     margin-bottom: 0;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
+}
+
+.company-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.company-summary {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.company-summary > div {
+    min-width: 9rem;
+    padding: 1rem;
+    border: 1px solid #dce1e9;
+    border-radius: 0.65rem;
+    background: #ffffff;
+    text-align: center;
+}
+
+.summary-value,
+.summary-label {
+    display: block;
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 750;
+}
+
+.summary-label {
+    color: #596579;
+    font-size: 0.85rem;
+}
+
+.section-heading {
+    margin-bottom: 1rem;
+}
+
+.company-review-list {
+    margin-bottom: 1.5rem;
+}
+
+.company-back-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .statistics-table-wrapper {
@@ -322,6 +385,7 @@ h2 {
     }
 
     .page-heading,
+    .company-heading,
     .review-card-header,
     .search-form {
         align-items: flex-start;
@@ -336,5 +400,10 @@ h2 {
     .search-field,
     .search-form .button {
         width: 100%;
+    }
+
+    .company-summary {
+        width: 100%;
+        flex-direction: column;
     }
 }

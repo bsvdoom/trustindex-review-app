@@ -27,7 +27,11 @@
                 <tbody>
                     {% for statistic in statistics %}
                         <tr>
-                            <th scope="row">{{ statistic.companyName }}</th>
+                            <th scope="row">
+                                <a class="company-link" href="{{ path('app_company_show', { name: statistic.companyName }) }}">
+                                    {{ statistic.companyName }}
+                                </a>
+                            </th>
                             <td>{{ statistic.reviewCount }}</td>
                             <td>{{ statistic.averageRating|number_format(2, ',', ' ') }}</td>
                         </tr>

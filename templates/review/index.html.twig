@@ -31,26 +31,7 @@
 
     <div class="review-list">
         {% for review in reviews %}
-            {% set reviewText = review.reviewText %}
-            <article class="review-card">
-                <div class="review-card-header">
-                    <h2>{{ review.companyName }}</h2>
-                    <time datetime="{{ review.createdAt|date('c') }}">
-                        {{ review.createdAt|date('Y. m. d. H:i') }}
-                    </time>
-                </div>
-
-                <div class="rating" role="img" aria-label="Értékelés: {{ review.rating }} az 5-ből">
-                    <span aria-hidden="true">
-                        {% for star in 1..5 %}{{ star <= review.rating ? '★' : '☆' }}{% endfor %}
-                    </span>
-                </div>
-
-                <p class="review-text">
-                    {{ reviewText|length > 160 ? reviewText|slice(0, 160) ~ '…' : reviewText }}
-                </p>
-                <a class="review-link" href="{{ path('app_review_show', { id: review.id }) }}">Teljes vélemény</a>
-            </article>
+            {% include 'review/_card.html.twig' with { review: review } only %}
         {% else %}
             <div class="empty-state">
                 {% if query is not null %}

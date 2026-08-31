@@ -7,7 +7,11 @@
         <div class="review-card-header">
             <div>
                 <p class="eyebrow">Vélemény részletei</p>
-                <h1>{{ review.companyName }}</h1>
+                <h1>
+                    <a class="company-link" href="{{ path('app_company_show', { name: review.companyName }) }}">
+                        {{ review.companyName }}
+                    </a>
+                </h1>
             </div>
             <time datetime="{{ review.createdAt|date('c') }}">
                 {{ review.createdAt|date('Y. m. d. H:i') }}
