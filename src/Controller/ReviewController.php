@@ -34,8 +34,7 @@ class ReviewController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         ReviewRepository $reviewRepository,
-    ): Response
-    {
+    ): Response {
         $review = new Review();
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);

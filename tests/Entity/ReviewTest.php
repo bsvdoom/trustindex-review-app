@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Entity;
 
 use App\Entity\Review;
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
@@ -17,8 +16,8 @@ class ReviewTest extends TestCase
     {
         $review = new Review();
 
-        self::assertInstanceOf(DateTimeImmutable::class, $review->getCreatedAt());
-        self::assertInstanceOf(DateTimeImmutable::class, $review->getUpdatedAt());
+        self::assertInstanceOf(\DateTimeImmutable::class, $review->getCreatedAt());
+        self::assertInstanceOf(\DateTimeImmutable::class, $review->getUpdatedAt());
         self::assertSame($review->getCreatedAt(), $review->getUpdatedAt());
     }
 

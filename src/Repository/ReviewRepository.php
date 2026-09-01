@@ -121,9 +121,6 @@ class ReviewRepository extends ServiceEntityRepository
         );
     }
 
-    /**
-     * @return string|null
-     */
     public function findCanonicalCompanyName(string $companyName): ?string
     {
         /** @var list<array{companyName: mixed}> $matches */
