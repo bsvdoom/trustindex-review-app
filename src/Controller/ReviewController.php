@@ -41,6 +41,16 @@ class ReviewController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $companyName = $review->getCompanyName();
+
+            if (null !== $companyName) {
+                $canonicalCompanyName = $reviewRepository->findCanonicalCompanyName($companyName);
+
+                if (null !== $canonicalCompanyName) {
+                    $review->setCompanyName($canonicalCompanyName);
+                }
+            }
+
             $entityManager->persist($review);
             $entityManager->flush();
 

@@ -24,10 +24,15 @@
             >
         </div>
         <button class="button" type="submit">Keresés</button>
-        {% if query is not null %}
-            <a class="clear-search" href="{{ path('app_review_index') }}">Keresés törlése</a>
-        {% endif %}
     </form>
+
+    {% if query is not null %}
+        <p class="search-status">
+            <span>Aktív keresés: „{{ query }}”</span>
+            <span aria-hidden="true">·</span>
+            <a class="clear-search" href="{{ path('app_review_index') }}">Keresés törlése</a>
+        </p>
+    {% endif %}
 
     <div class="review-list">
         {% for review in reviews %}
@@ -36,7 +41,6 @@
             <div class="empty-state">
                 {% if query is not null %}
                     <p>Nincs a keresésnek megfelelő vélemény.</p>
-                    <a class="clear-search" href="{{ path('app_review_index') }}">Keresés törlése</a>
                 {% else %}
                     <p>Még nem érkezett vélemény. Légy te az első!</p>
                     <a class="button" href="{{ path('app_review_new') }}">Első vélemény megírása</a>

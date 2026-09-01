@@ -55,6 +55,23 @@ a {
     font-weight: 650;
 }
 
+.navigation-link {
+    padding: 0.35rem 0.55rem;
+    border-radius: 0.35rem;
+    text-decoration: none;
+}
+
+.navigation-link:hover {
+    background: #eef2f7;
+    color: #19449e;
+}
+
+.navigation-link:focus-visible {
+    outline: 0.2rem solid #2457c5;
+    outline-offset: 0.15rem;
+    background: #eef2f7;
+}
+
 .main-content {
     padding-block: 2.5rem 4rem;
 }
@@ -144,6 +161,16 @@ h2 {
     border-radius: 0.4rem;
     color: inherit;
     font: inherit;
+}
+
+.search-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.5rem;
+    margin: -0.75rem 0 1.5rem;
+    color: #596579;
+    overflow-wrap: anywhere;
 }
 
 .clear-search,
@@ -406,6 +433,15 @@ h2 {
     .search-field,
     .search-form .button {
         width: 100%;
+    }
+
+    .search-field {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .search-field input {
+        max-width: 100%;
     }
 
     .company-summary {

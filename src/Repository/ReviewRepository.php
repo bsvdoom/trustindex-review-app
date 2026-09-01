@@ -121,6 +121,28 @@ class ReviewRepository extends ServiceEntityRepository
         );
     }
 
+    /**
+     * @return string|null
+     */
+    public function findCanonicalCompanyName(string $companyName): ?string
+    {
+        /** @var list<array{companyName: mixed}> $matches */
+        $matches = $this->createQueryBuilder('review')
+            ->select('review.companyName AS companyName')
+            ->andWhere('LOWER(review.companyName) = LOWER(:companyName)')
+            ->setParameter('companyName', $companyName)
+            ->orderBy('review.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getArrayResult();
+
+        if ([] === $matches) {
+            return null;
+        }
+
+        return (string) $matches[0]['companyName'];
+    }
+
     private function createNewestFirstQueryBuilder(): QueryBuilder
     {
         return $this->createQueryBuilder('review')
