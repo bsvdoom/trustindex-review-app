@@ -153,5 +153,5 @@ A feladat engedélyének megfelelően AI coding assistant segítette a megvalós
 | Részletező, cégstatisztika és keresés           |                           60 perc |
 | Bónuszfunkciók és felületi finomítások          |                           90 perc |
 | Automatizált tesztek                            |                           30 perc |
-| Minőségellenőrzés, CI és dokumentáció           |                           30 perc |
-| Összesen                                        |                             6 óra |
+| Minőségellenőrzés, CI és dokumentáció           |                           60 perc |
+| Összesen                                        |                     6 óra 30 perc |
